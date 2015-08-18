@@ -18,30 +18,39 @@ public class Tamagotchi {
    }
  }
 
-
 public String feed() {
-  mFullness = MAX_FULLNESS;
-  mHappiness += 1;
-  mEnergy -= 2;
-  String output = String.format("Your Tamagotchi levels are: fullness %d, happiness %d, energy %d", mFullness, mHappiness, mEnergy);
-  return output;
+  if(!isDead()) {
+    mFullness = MAX_FULLNESS;
+    mHappiness += 1;
+    mEnergy -= 2;
+    String output = String.format("Your Tamagotchi levels are: fullness %d, happiness %d, energy %d", mFullness, mHappiness, mEnergy);
+    return output;
+  } else {
+  return "Oops, looks like your tamagotchi died....Maybe you should get a plant.";
+  }
  }
 
  public String play() {
-   mFullness -= 2;
-   mHappiness = MAX_HAPPINESS;
-   mEnergy -= 2;
-   String output = String.format("Your Tamagotchi levels are: fullness %d, happiness %d, energy %d", mFullness, mHappiness, mEnergy);
-   return output;
+   if(!isDead()) {
+     mFullness -= 2;
+     mHappiness = MAX_HAPPINESS;
+     mEnergy -= 2;
+     String output = String.format("Your Tamagotchi levels are: fullness %d, happiness %d, energy %d", mFullness, mHappiness, mEnergy);
+     return output;
+   } else {
+   return "Oops, looks like your tamagotchi died....Maybe you should get a plant.";
+ }
  }
 
  public String rest() {
-   mFullness -=1;
-   mHappiness +=2;
-   mEnergy = MAX_ENERGY;
-   String output = String.format("Your Tamagotchi levels are: fullness %d, happiness %d, energy %d", mFullness, mHappiness, mEnergy);
-   return output;
- }
-
-
- }
+   if(!isDead()) {
+     mFullness -=1;
+     mHappiness +=2;
+     mEnergy = MAX_ENERGY;
+     String output = String.format("Your Tamagotchi levels are: fullness %d, happiness %d, energy %d", mFullness, mHappiness, mEnergy);
+     return output;
+   } else {
+   return "Oops, looks like your tamagotchi died....Maybe you should get a plant.";
+    }
+  }
+}

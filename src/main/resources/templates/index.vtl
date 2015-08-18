@@ -6,23 +6,25 @@
 <h3>Choose one!</h3>
   <form action="/play" method="get">
     <div class="form-group">
+      <input id="playClicked" name="playClicked" class="form-control" type="hidden" value="true">
       <button type="play" class="btn">Play!</button>
     </div>
   </form>
 
   <form action="/rest" method="get">
     <div class="form-group">
+      <input id="restClicked" name="restClicked" class="form-control" type="hidden" value="true">
       <button type="rest" class="btn">Rest!</button>
     </div>
   </form>
 
-  <form action="/feed" method="feed">
+  <form action="/feed" method="get">
     <div class="form-group">
+      <input id="feedClicked" name="feedClicked" class="form-control" type="hidden" value="true">
       <button type="feed" class="btn">Feed!</button>
     </div>
   </form>
 
-<!-- add 3 buttons for play, feed, rest -->
 
 #else
 <form action="/index" method="post">

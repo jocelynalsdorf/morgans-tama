@@ -6,9 +6,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import java.util.ArrayList;
 import java.lang.*;
 import java.util.*;
-
 import static org.fluentlenium.core.filter.FilterConstructor.*;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppTest extends FluentTest {

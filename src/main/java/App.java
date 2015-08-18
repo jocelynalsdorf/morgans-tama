@@ -18,19 +18,37 @@ public class App {
     model.put("tamagotchiname", request.session().attribute("tamagotchiname"));
     model.put("template", "templates/index.vtl");
 
+
     return new ModelAndView(model, layout);
   }, new VelocityTemplateEngine());
 
   post("/index", (request, response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
 
+    boolean playClicked = Boolean.parseBoolean(request.queryParams("playClicked"));
+    boolean restClicked = Boolean.parseBoolean(request.queryParams("restClicked"));
+    boolean feedClicked = Boolean.parseBoolean(request.queryParams("feedClicked"));
+
+    if(playClicked) {
+      Tamagotchi.play();
+      } else if (restClicked) {
+      Tamagotchi.rest(); {
+      } else if (feedClicked) {
+        Tamagotchi.feed();
+      }
+
+    model.put("playClicked", playClicked);
+    model.put("restClicked", restClicked);
+    model.put("feedClicked", feedClicked);
+
+
     String newName = request.queryParams("username");
     request.session().attribute("username", newName);
     model.put("username", newName);
 
-     String newTam = request.queryParams("tamagotchiname");
-     request.session().attribute("tamagotchiname", newTam);
-     model.put("tamagotchiname", newTam);
+    String newTam = request.queryParams("tamagotchiname");
+    request.session().attribute("tamagotchiname", newTam);
+    model.put("tamagotchiname", newTam);
 
     model.put("template", "templates/index.vtl");
     return new ModelAndView(model, layout);
