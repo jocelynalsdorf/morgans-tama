@@ -1,0 +1,42 @@
+<h1>Let's play!</h1>
+
+#if($username && $tamagotchiname)
+<h2>Hello $username, what would you like to do with $tamagotchiname today?</h2>
+
+<h3>Choose one!</h3>
+  <form action="/play" method="get">
+    <div class="form-group">
+      <button type="play" class="btn">Play!</button>
+    </div>
+  </form>
+
+  <form action="/rest" method="get">
+    <div class="form-group">
+      <button type="rest" class="btn">Rest!</button>
+    </div>
+  </form>
+
+  <form action="/feed" method="feed">
+    <div class="form-group">
+      <button type="feed" class="btn">Feed!</button>
+    </div>
+  </form>
+
+<!-- add 3 buttons for play, feed, rest -->
+
+#else
+<form action="/index" method="post">
+<div class="form-group">
+  <label for="username">Your name</label>
+  <input id="username" name="username" class="form-control" type="text">
+</div>
+
+<div class="form-group">
+  <label for="tamagotchiname">Your pet name</label>
+  <input id="tamagotchiname" name="tamagotchiname" class="form-control" type="text">
+</div>
+
+  <button type="submit" class="btn">Submit</button>
+</form>
+
+#end
