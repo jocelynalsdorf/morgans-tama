@@ -2,37 +2,34 @@ import java.lang.*;
 import java.util.*;
 
 public class Tamagotchi {
- public final int MAX_FULLNESS = 10;
- public final int MAX_HAPPINESS = 10;
- public final int MAX_ENERGY = 10;
+ public final int MAX_LEVEL = 10;
 
- private String mName;
  private int mFullness;
  private int mHappiness;
  private int mEnergy;
+ private int mLevel;
 
- public Tamagotchi(String name) {
-   mName = name;
-   mFullness = 5;
-   mHappiness = 5;
-   mEnergy = 5;
-
- }
-
-   public String getName() {
-     return mName;
+   public Tamagotchi(String name) {
+     mFullness = 5;
+     mHappiness = 5;
+     mEnergy = 5;
+     mLevel = 1;
    }
 
-   public int fullness() {
+   public int getFullness() {
      return mFullness;
    }
 
-   public int happiness() {
+   public int getHappiness() {
      return mHappiness;
    }
 
-   public int energy() {
+   public int getEnergy() {
      return mEnergy;
+   }
+
+   public int getLevel() {
+     return mLevel;
    }
 
    public boolean isDead() {
@@ -43,25 +40,42 @@ public class Tamagotchi {
      }
    }
 
-  public String myTamStatus () {
-   return String.format("%s levels are: fullness %d, happiness %d, energy %d", getName(), fullness(), happiness(), energy());
+  public String getStatus () {
+   return String.format("Your tamagotchi's status is: level %d, fullness %d, happiness %d, energy %d", getLevel(), getFullness(), getHappiness(), getEnergy());
    }
 
   public void feed() {
-      mFullness = MAX_FULLNESS;
-      mHappiness += 1;
-      mEnergy -= 2;
+      if (mFullness < 10) {
+        mFullness++;
+      }
+      if (mHappiness <= 10) {
+        mHappiness -= 1;
+      }
+      if (mEnergy <= 10) {
+        mEnergy -= 2;
+      }
    }
 
    public void play() {
-       mFullness -= 2;
-       mHappiness = MAX_HAPPINESS;
+     if (mFullness <= 10) {
+       mFullness -= 1;
+     }
+     if (mHappiness < 10) {
+       mHappiness++;
+     }
+     if (mEnergy <= 10) {
        mEnergy -= 2;
-   }
+     }
+  }
 
    public void rest() {
-       mFullness -=1;
-       mHappiness +=2;
-       mEnergy = MAX_ENERGY;
+     if (mFullness <= 10) {
+       mFullness -= 2;
+     }
+     if (mHappiness < 10) {
+       mHappiness++;
+     }
+     if (mEnergy < 10) {
+       mEnergy++;
+     }
   }
- }
