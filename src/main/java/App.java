@@ -9,23 +9,35 @@ public class App {
   public static void main(String[] args) {
   staticFileLocation("/public");
   String layout = "templates/layout.vtl";
+  Tamagotchi myTam;
 
-  get("/", (request, response) -> {
+  // get("/", (request, response) -> {
+  //   HashMap<String, Object> model = new HashMap<String, Object>();
+  //
+  //   model.put("username", request.session().attribute("username"));
+  //   model.put("tamagotchiname", request.session().attribute("tamagotchiname"));
+  //
+  //   model.put("template", "templates/index.vtl");
+  //   return new ModelAndView (model, layout);
+  // }, new VelocityTemplateEngine());
+
+
+  get("/index", (request, response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
 
-    String userName = request.queryParams("username");
-    request.session().attribute("username", userName);
-    model.put("username", userName);
+    String name = request.queryParams("username");
+    request.session().attribute("username", name);
+    model.put("username", name);
 
     String tamName = request.queryParams("tamagotchiname");
     request.session().attribute("tamagotchiname", tamName);
     model.put("tamagotchiname", tamName);
 
-    model.put("template", "templates/index.vtl");
-    return new ModelAndView (model, layout);
+    model.put("template", "templates/welcome.vtl");
+    return new ModelAndView(model, layout);
   }, new VelocityTemplateEngine());
 
-  // get("/success", (request, response) -> {
+  // get("/index", (request, response) -> {
   //   HashMap<String, Object> model = new HashMap<String, Object>();
   //   userName = request.queryParams("username");
   //   String tamName = request.queryParams("tamagotchiname");
@@ -33,36 +45,41 @@ public class App {
   //
   //   model.put("userName", userName);
   //   model.put("myTam", myTam);
-  //   model.put("template", "templates/success.vtl");
+  //   model.put("template", "templates/.vtl");
   //   return new ModelAndView(model, layout);
   // }, new VelocityTemplateEngine());
 
-  post("/success", (request, response) -> {
+  post("/play", (request, response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
+
+    String name = request.queryParams("username");
+    request.session().attribute("username", name);
+    model.put("username", name);
+
+    String tamName = request.queryParams("tamagotchiname");
+    request.session().attribute("tamagotchiname", tamName);
+    model.put("tamagotchiname", tamName);
 
     boolean playClicked =  Boolean.parseBoolean(request.queryParams("playClicked"));
     boolean feedClicked =  Boolean.parseBoolean(request.queryParams("feedClicked"));
     boolean restClicked =  Boolean.parseBoolean(request.queryParams("restClicked"));
-    String error = "Sorry, try again!";
 
       if(playClicked) {
-        tamName.play();
+        myTam.play();
       } else if (restClicked) {
-        tamName.rest();
+        myTam.rest();
       } else if (feedClicked) {
-        tamName.feed();
+        myTam.feed();
       } else {
-        tamName.isDead();
+        myTam.isDead();
       }
 
 
     model.put("playClicked", playClicked);
     model.put("restClicked", restClicked);
     model.put("feedClicked", feedClicked);
-    model.put("userName", userName);
-    model.put("tamName", tamName);
 
-    model.put("template", "templates/success.vtl");
+    model.put("template", "templates/index.vtl");
     return new ModelAndView(model, layout);
   }, new VelocityTemplateEngine());
  }

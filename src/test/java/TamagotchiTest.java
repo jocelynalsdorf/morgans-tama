@@ -5,21 +5,21 @@ public class TamagotchiTest {
 
 @Test
 public void Tamagotchi_instantiatesCorrectly_true() {
-  Tamagotchi myTamagotchi = new Tamagotchi("ml");
+  Tamagotchi myTamagotchi = new Tamagotchi();
   assertEquals(true, myTamagotchi instanceof Tamagotchi);
 }
 
-@Test
-public void Tamagotchi_isDead_false() {
-  Tamagotchi testIsDead = new Tamagotchi("ml");
-  assertEquals(false, testIsDead.isDead());
-}
-
-@Test
-public void Tamagotchi_getCorrectLevel_true() {
-  Tamagotchi testFullness = new Tamagotchi("ml");
-  assertEquals(5, testFullness.fullness());
-}
+// @Test
+// public void Tamagotchi_isDead_false() {
+//   Tamagotchi testIsDead = new Tamagotchi();
+//   assertEquals(false, testIsDead.isDead());
+// }
+//
+// @Test
+// public void Tamagotchi_getCorrectLevel_true() {
+//   Tamagotchi testFullness = new Tamagotchi();
+//   assertEquals(5, testFullness.fullness());
+// }
 
 // @Test
 // public void Tamagotchi_playLevelMAX_true() {

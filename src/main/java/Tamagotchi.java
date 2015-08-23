@@ -4,16 +4,22 @@ import java.util.*;
 public class Tamagotchi {
  public final int MAX_LEVEL = 10;
 
+ private String mName;
  private int mFullness;
  private int mHappiness;
  private int mEnergy;
  private int mLevel;
 
    public Tamagotchi(String name) {
+     mName = name;
      mFullness = 5;
      mHappiness = 5;
      mEnergy = 5;
      mLevel = 1;
+   }
+
+   public String getName() {
+     return mName;
    }
 
    public int getFullness() {
@@ -41,7 +47,7 @@ public class Tamagotchi {
    }
 
   public String getStatus () {
-   return String.format("Your tamagotchi's status is: level %d, fullness %d, happiness %d, energy %d", getLevel(), getFullness(), getHappiness(), getEnergy());
+   return String.format("level %d, fullness %d, happiness %d, energy %d", getLevel(), getFullness(), getHappiness(), getEnergy());
    }
 
   public void feed() {
@@ -79,3 +85,4 @@ public class Tamagotchi {
        mEnergy++;
      }
   }
+}
