@@ -2,13 +2,13 @@ import java.lang.*;
 import java.util.*;
 
 public class Tamagotchi {
- public final int MAX_LEVEL = 10;
-
  private String mName;
  private int mFullness;
  private int mHappiness;
  private int mEnergy;
  private int mLevel;
+
+ public final int MAX_LEVEL = 10;
 
    public Tamagotchi(String name) {
      mName = name;

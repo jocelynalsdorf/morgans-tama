@@ -6,34 +6,31 @@ import java.util.ArrayList;
 
 public class App {
 
+  public static Tamagotchi myTam;
+  public static String username = "";
+
   public static void main(String[] args) {
   staticFileLocation("/public");
   String layout = "templates/layout.vtl";
-  Tamagotchi myTam;
 
-  // get("/", (request, response) -> {
-  //   HashMap<String, Object> model = new HashMap<String, Object>();
-  //
-  //   model.put("username", request.session().attribute("username"));
-  //   model.put("tamagotchiname", request.session().attribute("tamagotchiname"));
-  //
-  //   model.put("template", "templates/index.vtl");
-  //   return new ModelAndView (model, layout);
-  // }, new VelocityTemplateEngine());
-
-
-  get("/index", (request, response) -> {
+  get("/", (request, response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
 
-    String name = request.queryParams("username");
-    request.session().attribute("username", name);
-    model.put("username", name);
+    model.put("template", "templates/index.vtl");
+    return new ModelAndView (model, layout);
+  }, new VelocityTemplateEngine());
 
+
+  get("/play", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    username = request.queryParams("username");
     String tamName = request.queryParams("tamagotchiname");
-    request.session().attribute("tamagotchiname", tamName);
-    model.put("tamagotchiname", tamName);
+    myTam = new Tamagotchi(tamName);
 
-    model.put("template", "templates/welcome.vtl");
+    model.put("username", username);
+    model.put("myTam", myTam);
+    model.put("template", "templates/index.vtl");
+
     return new ModelAndView(model, layout);
   }, new VelocityTemplateEngine());
 
@@ -56,10 +53,6 @@ public class App {
     request.session().attribute("username", name);
     model.put("username", name);
 
-    String tamName = request.queryParams("tamagotchiname");
-    request.session().attribute("tamagotchiname", tamName);
-    model.put("tamagotchiname", tamName);
-
     boolean playClicked =  Boolean.parseBoolean(request.queryParams("playClicked"));
     boolean feedClicked =  Boolean.parseBoolean(request.queryParams("feedClicked"));
     boolean restClicked =  Boolean.parseBoolean(request.queryParams("restClicked"));
@@ -78,8 +71,10 @@ public class App {
     model.put("playClicked", playClicked);
     model.put("restClicked", restClicked);
     model.put("feedClicked", feedClicked);
-
+    model.put("username", username);
+    model.put("myTam", myTam);
     model.put("template", "templates/index.vtl");
+
     return new ModelAndView(model, layout);
   }, new VelocityTemplateEngine());
  }
