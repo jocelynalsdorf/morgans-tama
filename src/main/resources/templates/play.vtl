@@ -1,6 +1,6 @@
 #if ($myTam.isNotDead())
 
-  <h3>Hi $username! Here are the stats for <h2 id="tamName">$myTam.getName()</h2>: $myTam.getStatus()</h3>
+  <h3>Hi $username! Here are the stats for <b id="tamName">$myTam.getName()</b>: $myTam.getStatus()</h3>
   <h3>Choose one!</h3>
   <form action="/play-game" method="post">
       <input id="playClicked" name="playClicked" class="form-control" type="hidden" value="true">
@@ -17,11 +17,10 @@
       <button type="submit" class="btn" id="feed">Feed!</button>
   </form>
 
-  <a href="/">I want a new tamagotchi</a>
+  <p><a href="/">I want a new tamagotchi</a></p>
 
 #else
 
-  $myTam.reset()
   <h1>Oh no! Your tamagotchi died. :( Maybe you should get a plant.</h1>
   <a href="/">Go back</a>
 

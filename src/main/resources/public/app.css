@@ -14,3 +14,14 @@ a:active{
 	color: white;
     text-decoration: none;
 }
+#play {
+  margin-bottom: 10px;
+}
+
+#feed {
+  margin-bottom: 10px;
+}
+
+#rest {
+	margin-bottom: 10px;
+}

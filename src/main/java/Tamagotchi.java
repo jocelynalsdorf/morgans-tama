@@ -52,7 +52,7 @@ public class Tamagotchi {
 
   public void feed() {
       if (mFullness < 10) {
-        mFullness++;
+        mFullness +=5;
       }
       if (mHappiness <= 10) {
         mHappiness -= 1;
@@ -67,7 +67,7 @@ public class Tamagotchi {
        mFullness -= 1;
      }
      if (mHappiness < 10) {
-       mHappiness++;
+       mHappiness += 5;
      }
      if (mEnergy <= 10) {
        mEnergy -= 2;
@@ -82,7 +82,7 @@ public class Tamagotchi {
        mHappiness++;
      }
      if (mEnergy < 10) {
-       mEnergy++;
+       mEnergy += 5;
      }
   }
 }
