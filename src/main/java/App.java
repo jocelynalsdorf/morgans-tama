@@ -24,10 +24,12 @@ public class App {
     HashMap<String, Object> model = new HashMap<String, Object>();
     username = request.queryParams("username");
     String tamName = request.queryParams("tamagotchiname");
-    myTam = new Tamagotchi(tamName);
 
+    //added class name here and then stored it in a session var and then then the model
+    Tamagotchi myTam = new Tamagotchi(tamName);
+    request.session().attribute("myTam", myTam);
     model.put("username", username);
-    model.put("myTam", myTam);
+    model.put("myTam", request.session().attribute("myTam"));
     model.put("template", "templates/play.vtl");
 
     return new ModelAndView(model, layout);
@@ -40,6 +42,9 @@ public class App {
     boolean feedClicked =  Boolean.parseBoolean(request.queryParams("feedClicked"));
     boolean restClicked =  Boolean.parseBoolean(request.queryParams("restClicked"));
 
+
+//added creation of instance of class here--need something to call the methods on!
+    Tamagotchi myTam = request.session().attribute("myTam");
       if(playClicked) {
         myTam.play();
       } else if (restClicked) {
@@ -50,12 +55,16 @@ public class App {
         myTam.isNotDead();
       }
 
+    
 
-    model.put("playClicked", playClicked);
-    model.put("restClicked", restClicked);
-    model.put("feedClicked", feedClicked);
+   //stored the instance of the class here so it can keep track of the changes
+    model.put("myTam", request.session().attribute("myTam"));
+
+    //commented these methods out because you have the object now to call methods on so not needed
+    //model.put("playClicked", playClicked);
+    //model.put("restClicked", restClicked);
+    //model.put("feedClicked", feedClicked);
     model.put("username", username);
-    model.put("myTam", myTam);
     model.put("template", "templates/play.vtl");
 
     return new ModelAndView(model, layout);
