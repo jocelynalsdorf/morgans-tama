@@ -38,8 +38,8 @@ public class Tamagotchi {
      return mLevel;
    }
 
-   public boolean isDead() {
-     if( mFullness <= 0 || mHappiness <= 0 || mEnergy <= 0) {
+   public boolean isNotDead() {
+     if( mFullness > 0 && mHappiness > 0 && mEnergy > 0) {
        return true;
      } else {
        return false;

@@ -1,31 +1,6 @@
 <h1 class="well">Let's play!</h1>
 
-#if($username && $myTam.getName())
-  #if ($!myTam.isDead())
-<h3>Here is an updated status for $myTam.getName(): $myTamStatus()</h3>
-<h3>Choose one!</h3>
-  <form action="/play" method="post">
-      <input id="playClicked" name="playClicked" class="form-control" type="hidden" value="true">
-      <button type="submit" class="btn" id="play">Play!</button>
-  </form>
-
-  <form action="/play" method="post">
-      <input id="restClicked" name="restClicked" class="form-control" type="hidden" value="true">
-      <button type="submit" class="btn" id="rest">Rest!</button>
-  </form>
-
-  <form action="/play" method="post">
-      <input id="feedClicked" name="feedClicked" class="form-control" type="hidden" value="true">
-      <button type="submit" class="btn" id="feed">Feed!</button>
-  </form>
-  #else
-  $myTam.reset()
-  <h1>Oh no! Your tamagotchi died. :( Maybe you should get a plant.</h1>
-  <a href="/">Go back</a>
-  #end
-
-#else
-  <form action="/play" method="post">
+  <form action="/play">
   <div class="form-group">
     <label for="username">Your name</label>
     <input id="username" name="username" class="form-control" type="text">
@@ -38,5 +13,3 @@
 
     <button type="submit" class="btn">Submit</button>
   </form>
-
-#end
